@@ -4,6 +4,14 @@ import { env } from './src/config/env';
 export default defineConfig({
   testDir: './tests',
   outputDir: 'test-results/artifacts',
+  webServer: process.env.CI
+    ? {
+        command: 'node test-app/server.js',
+        url: 'http://127.0.0.1:4173',
+        reuseExistingServer: false,
+        timeout: 30_000
+      }
+    : undefined,
   timeout: env.testTimeoutMs,
   expect: {
     timeout: env.expectTimeoutMs,

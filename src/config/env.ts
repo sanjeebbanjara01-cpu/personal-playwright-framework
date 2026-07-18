@@ -33,7 +33,7 @@ if (authEnabled && (!username || !password)) {
 }
 
 export const env = {
-  baseUrl: stringValue('BASE_URL', 'https://playwright.dev'),
+  baseUrl: stringValue('BASE_URL', 'https://sanjeebbanjara01-cpu.github.io/playwright-practice-website/'),
   authEnabled,
   username,
   password,

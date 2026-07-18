@@ -7,11 +7,13 @@ import {
 import { env } from '../config/env';
 import { HomePage } from '../pages/home.page';
 import { LoginPage } from '../pages/login.page';
+import { DashboardPage } from '../pages/dashboard.page';
 
 interface TestFixtures {
   appPage: Page;
   homePage: HomePage;
   loginPage: LoginPage;
+  dashboardPage: DashboardPage;
 }
 
 interface WorkerFixtures {
@@ -47,6 +49,10 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
 
   loginPage: async ({ appPage }, use) => {
     await use(new LoginPage(appPage));
+  },
+
+  dashboardPage: async ({ appPage }, use) => {
+    await use(new DashboardPage(appPage));
   }
 });
 
