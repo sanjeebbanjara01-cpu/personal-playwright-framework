@@ -13,12 +13,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Checkout practice website
+        uses: actions/checkout@v6
+        with:
+          repository: sanjeebbanjara01-cpu/playwright-practice-website
+          path: test-app
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -32,7 +38,7 @@ jobs:
 
       - name: Run Playwright tests
         env:
-          BASE_URL: ${{ vars.BASE_URL || 'https://sanjeebbanjara01-cpu.github.io/playwright-practice-website/' }}
+          BASE_URL: http://127.0.0.1:4173/
           AUTH_ENABLED: ${{ vars.AUTH_ENABLED || 'false' }}
           USERNAME: ${{ secrets.TEST_USERNAME }}
           PASSWORD: ${{ secrets.TEST_PASSWORD }}
@@ -45,7 +51,7 @@ jobs:
 
       - name: Upload test reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: playwright-reports
           retention-days: 14
