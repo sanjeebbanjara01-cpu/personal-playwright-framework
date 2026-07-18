@@ -20,7 +20,7 @@ export class DashboardPage extends BasePage {
   }
 
   async openDashboard(): Promise<void> {
-    await this.open('/dashboard.html');
+    await this.open('dashboard.html');
   }
 
   async expectInitialStatistics(): Promise<void> {

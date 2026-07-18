@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Playwright tests
         env:
-          BASE_URL: ${{ vars.BASE_URL || 'https://playwright.dev' }}
+          BASE_URL: ${{ vars.BASE_URL || 'https://sanjeebbanjara01-cpu.github.io/playwright-practice-website/' }}
           AUTH_ENABLED: ${{ vars.AUTH_ENABLED || 'false' }}
           USERNAME: ${{ secrets.TEST_USERNAME }}
           PASSWORD: ${{ secrets.TEST_PASSWORD }}
