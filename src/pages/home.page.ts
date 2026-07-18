@@ -7,7 +7,7 @@ export class HomePage extends BasePage {
   }
 
   async openHome(): Promise<void> {
-    await this.open('/');
+    await this.open('./');
   }
 
   async expectPageLoaded(): Promise<void> {
