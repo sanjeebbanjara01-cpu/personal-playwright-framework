@@ -1,0 +1,26 @@
+{
+  "name": "personal-playwright-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable Playwright and TypeScript automation framework for personal projects.",
+  "scripts": {
+    "clean": "node scripts/clean-reports.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run clean && playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed --workers=1",
+    "test:debug": "playwright test --debug --workers=1",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "codegen": "playwright codegen",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@types/node": "24.0.15",
+    "dotenv": "17.2.1",
+    "typescript": "5.8.3"
+  }
+}

@@ -1,0 +1,54 @@
+name: Playwright Tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Run Playwright tests
+        env:
+          BASE_URL: ${{ vars.BASE_URL || 'https://playwright.dev' }}
+          AUTH_ENABLED: ${{ vars.AUTH_ENABLED || 'false' }}
+          USERNAME: ${{ secrets.TEST_USERNAME }}
+          PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          LOGIN_PATH: ${{ vars.LOGIN_PATH || '/login' }}
+          AUTHENTICATED_PATH: ${{ vars.AUTHENTICATED_PATH || '/' }}
+          USERNAME_SELECTOR: ${{ vars.USERNAME_SELECTOR || 'input[name="username"]' }}
+          PASSWORD_SELECTOR: ${{ vars.PASSWORD_SELECTOR || 'input[name="password"]' }}
+          SUBMIT_SELECTOR: ${{ vars.SUBMIT_SELECTOR || 'button[type="submit"]' }}
+        run: npm test
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-reports
+          retention-days: 14
+          path: |
+            playwright-report/
+            test-results/

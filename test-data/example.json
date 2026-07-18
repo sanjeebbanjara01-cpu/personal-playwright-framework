@@ -1,0 +1,7 @@
+{
+  "description": "Place reusable, non-secret test data in this folder.",
+  "sampleUser": {
+    "firstName": "Test",
+    "lastName": "User"
+  }
+}
