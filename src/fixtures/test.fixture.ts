@@ -8,12 +8,14 @@ import { env } from '../config/env';
 import { HomePage } from '../pages/home.page';
 import { LoginPage } from '../pages/login.page';
 import { DashboardPage } from '../pages/dashboard.page';
+import { ProductsPage } from '../pages/products.page';
 
 interface TestFixtures {
   appPage: Page;
   homePage: HomePage;
   loginPage: LoginPage;
   dashboardPage: DashboardPage;
+  productsPage: ProductsPage;
 }
 
 interface WorkerFixtures {
@@ -53,6 +55,10 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
 
   dashboardPage: async ({ appPage }, use) => {
     await use(new DashboardPage(appPage));
+  },
+
+  productsPage: async ({ appPage }, use) => {
+    await use(new ProductsPage(appPage));
   }
 });
 
