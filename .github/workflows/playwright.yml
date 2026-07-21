@@ -42,9 +42,9 @@ jobs:
           AUTH_ENABLED: ${{ vars.AUTH_ENABLED || 'false' }}
           USERNAME: ${{ secrets.TEST_USERNAME }}
           PASSWORD: ${{ secrets.TEST_PASSWORD }}
-          LOGIN_PATH: ${{ vars.LOGIN_PATH || '/login' }}
-          AUTHENTICATED_PATH: ${{ vars.AUTHENTICATED_PATH || '/' }}
-          USERNAME_SELECTOR: ${{ vars.USERNAME_SELECTOR || 'input[name="username"]' }}
+          LOGIN_PATH: ${{ vars.LOGIN_PATH || 'login.html' }}
+          AUTHENTICATED_PATH: ${{ vars.AUTHENTICATED_PATH || 'dashboard.html' }}
+          USERNAME_SELECTOR: ${{ vars.USERNAME_SELECTOR || 'input[name="email"]' }}
           PASSWORD_SELECTOR: ${{ vars.PASSWORD_SELECTOR || 'input[name="password"]' }}
           SUBMIT_SELECTOR: ${{ vars.SUBMIT_SELECTOR || 'button[type="submit"]' }}
         run: npm test
